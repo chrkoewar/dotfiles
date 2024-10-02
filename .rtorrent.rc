@@ -1,0 +1,18 @@
+# vim: set syntax=conf: to ~/.rtorrent.rc
+# https://wiki.archlinux.org/title/RTorrent#Configuration
+
+directory.default.set = ~/tmp
+session.path.set = ~/.config/rtorrent/session
+
+throttle.min_peers.normal.set = 40
+throttle.max_peers.normal.set = 52
+
+throttle.min_peers.seed.set = 10
+throttle.max_peers.seed.set = 52
+
+throttle.max_uploads.set = 8
+
+throttle.global_down.max_rate.set = 200
+throttle.global_up.max_rate.set = 28
+
+schedule2 = low_diskspace,5,60,((close_low_diskspace,100M))

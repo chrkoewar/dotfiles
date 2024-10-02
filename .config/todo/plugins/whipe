@@ -1,0 +1,3 @@
+#!/bin/bash
+rm $TODO_FILE
+touch $TODO_FILE

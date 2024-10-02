@@ -1,0 +1,148 @@
+#https://nitter.net/rki_de/rss ! official
+#https://nitter.net/Polizei_DeRo/rss ! twitter
+#https://nitter.net/Polizei_HAL/rss ! twitter
+#"query:Offiziell:tags # \"official\""
+
+#https://nitter.net/janboehm/rss ! socials
+#https://nitter.net/Der_Postillon/rss ! socials
+# https://www.reddit.com/r/kettlebell.rss ! socials
+# https://www.reddit.com/r/capoeira.rss ! socials
+# https://www.reddit.com/r/ChatGPT.rss ! socials
+# https://www.reddit.com/r/bjj.rss ! socials
+#https://www.reddit.com/r/LifeProTips.rss ! socials
+# "query:socials:tags # \"socials\""
+
+
+# Tagesschau
+# rss plaintext
+# https://www.tagesschau.de/xml/atom  ! news
+# alle meldungen
+# https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml ! news
+# Alle Meldungen 
+# https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml ! news
+# Meldungen Startseite
+# https://www.tagesschau.de/index~rss2.xml ! news
+
+# Tagesschau
+# Sachsen-Anhalt
+https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml ! news
+# alle Artikel aus dem Ressort Investigativ
+https://www.tagesschau.de/investigativ/index~rss2.xml ! news
+# alle Artikel aus dem Ressort Ausland
+https://www.tagesschau.de/ausland/index~rss2.xml ! news
+# nur Innenpolitik
+https://www.tagesschau.de/inland/innenpolitik/index~rss2.xml ! news
+
+"query:news:tags # \"news\""
+
+https://geschichten-aus-der-geschichte.podigee.io/feed/mp3 ! hörspiel
+https://feeds.br.de/hoerspiel-pool/feed.xml ! hörspiel
+https://www.hoerspielundfeature.de/das-feature-104.xml ! hörspiel
+https://www1.wdr.de/mediathek/audio/hoerspiel-speicher/wdr_hoerspielspeicher150.podcast ! hörspiel
+    # Sadhguru
+# https://www.omnycontent.com/d/playlist/ff838d5b-d787-4f8b-9a75-af9500e3acd3/d60c2ada-2f3e-4359-b0af-af960079f937/e1036464-868b-4320-98af-af960079f958/podcast.rss ! hörspiel
+# Fest und Flauschig
+https://car-ma.org/rss/fuf.rss ! hörspiel
+# Jordan B. Peterson
+https://feeds.simplecast.com/vsy1m5LV ! hörspiel
+# DLF Freispiel
+https://www.hoerspielundfeature.de/hoerspiel-118.xml ! hörspiel
+# DLF Hörspiel
+https://www.hoerspielundfeature.de/hoerspiel-122.xml ! hörspiel
+# DLF Krimi Hörspiel
+https://www.hoerspielundfeature.de/krimi-hoerspiel-100.xml ! hörspiel
+# DLF Doku
+# https://www.deutschlandfunk.de/dlf-doku-100.xml ! hörspiel
+# Was bisher geschah Geschichtspodcast
+https://rss.art19.com/was-bisher-geschah ! hörspiel
+# LAnz und Precht
+https://lanz-precht.podigee.io/feed/mp3 ! hörspiel
+# SRF Sternstunde Philosophie
+https://www.srf.ch/feed/podcast/sd/28426f25-6beb-4264-8ca9-ddddf717d6ea.xml ! hörspiel
+# SRF Hörspiel
+https://www.srf.ch/feed/podcast/sd/553f3450-1697-4fc5-ad79-0dead1605c8f.xml ! hörspiel
+"query:hörspiel:tags # \"hörspiel\""
+
+http://feeds.bbci.co.uk/news/world/rss.xml ! world
+https://japantoday.com/feed/atom ! world
+https://riotimesonline.com/feed ! world
+https://jornaldebrasilia.com.br/feed/ ! world
+"query:world:tags # \"world\""
+
+# https://nitter.net/DalaiLama/rss ! wissen
+https://www.heise.de/rss/heise-Rubrik-Wissen.rdf/ ! wissen
+https://www.heise.de/rss/heise-Rubrik-Netzpolitik.rdf ! wissen
+https://lukesmith.xyz/index.xml ! wissen
+# https://www.asahi.com/rss/asahi/newsheadlines.rdf ! wissen
+
+"query:wissen:tags # \"wissen\""
+
+# https://news.google.com/rss/search?q=Brazil ! brazil
+# https://riotimesonline.com/feed/ ! brazil
+# https://rioonwatch.org/?feed=rss2 ! brazil
+# "query:Brazil:tags # \"brazil\""
+# ct3003, heise
+https://www.youtube.com/feeds/videos.xml?UC1t9VFj-O6YUDPQxaVg-NkQ ! video
+# bosetti will reden
+https://www.youtube.com/feeds/videos.xml?UCx0ZfHVgupjADCt7BH3G4IA ! video
+
+# Lanz
+https://www.youtube.com/feeds/videos.xml?UCeqKIgPQfNInOswGRWt48kQ ! video
+
+https://www.youtube.com/feeds/videos.xml?UCx0ZfHVgupjADCt7BH3G4IA ! video
+# andre herrmann
+https://www.youtube.com/feeds/videos.xml?UC-p0sExAkpboQBJ-1d0s_Tw ! video
+# breaking lab
+https://www.youtube.com/feeds/videos.xml?UCE2hJ9CYR57BYhk3TjGVG6w ! video
+# ct3003
+https://www.youtube.com/feeds/videos.xml?UC1t9VFj-O6YUDPQxaVg-NkQ ! video
+# jordan b. peterson
+https://www.youtube.com/feeds/videos.xml?UCL_f53ZEJxp8TtlOkHwMV9Q ! video
+# plolitik
+https://www.youtube.com/feeds/videos.xml?UC7x1zUUIrccDYILEpD-gbBA ! video
+# scobel
+https://www.youtube.com/feeds/videos.xml?UCHnmeuSOn1Hscizw6otqWrA ! video
+# ultralativ
+https://www.youtube.com/feeds/videos.xml?UCb-cM927p9tWkqmpOrBabOQ ! video
+
+https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg ! video
+# two minute papers
+https://www.youtube.com/feeds/videos.xml?channel_id=UCIvthGRDv___2gL2JGiDryQ ! video
+# kueppersbusch
+https://www.youtube.com/feeds/videos.xml?channel_id=UCFhXFikryT4aFcLkLw2LBLA ! video
+# nile red
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNKtHIrVMaDE7hovBvodpDw ! video
+# neo magazin
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNNEMxGKV1LsKZRt4vaIbvw ! video
+# i did a thing
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJLZe_NoiG0hT7QCX_9vmqw ! video
+# chris turner
+https://www.youtube.com/feeds/videos.xml?channel_id=UCw62Qa74SJ4NCdWG3jw7Dfw ! video
+# browser ballet
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6zXbTQEujMO-5CzyywlVDQ ! video
+# SabineHossenfelder
+https://www.youtube.com/feeds/videos.xml?channel_id=UC1yNl2E66ZzKApQdRuTQ4tw ! video
+# pLOLitik
+https://www.youtube.com/feeds/videos.xml?channel_id=UC7x1zUUIrccDYILEpD-gbBA ! video
+# TheFlowingDutchman
+https://www.youtube.com/feeds/videos.xml?channel_id=UCTjnu4xROk_MfgmPtBsiipg ! video
+# hyperboleTV
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdoZxLWeGjEySL_LY0O_0EA ! video
+# srfkultursternstunden
+https://www.youtube.com/feeds/videos.xml?channel_id=UCh_GQqobenO55IJ9sYZWndA ! video
+# BostonDynamics
+https://www.youtube.com/feeds/videos.xml?channel_id=UC7vVhkEfw4nOGp8TyDk7RcQ ! video
+# hyperboleTV
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdoZxLWeGjEySL_LY0O_0EA ! video
+"query:video:tags # \"video\""
+
+"query:-------------------------------:flashs # \"z\""
+"query:starred (s):flags # \"s\""
+https://www.tagesschau.de/multimedia/sendung/tagesschau_in_100_sekunden/podcast-ts100-video-100~podcast.xml ! video
+# https://www.tagesschau.de/multimedia/sendung/tagesschau_vor_20_jahren/podcast-tsv20-video-100~podcast.xml ! video
+# https://www.tagesschau.de/multimedia/sendung/tagesschau_20_uhr/podcast-ts2000-video-100~podcast.xml ! video
+# deepintoyoutube reddit
+# https://www.reddit.com/r/DeepIntoYouTube.rss ! video
+# username to channel_id converter : https://www.streamweasels.com/tools/youtube-channel-id-and-user-id-convertor/
+
+

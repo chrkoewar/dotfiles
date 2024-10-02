@@ -1,0 +1,25 @@
+! clear Lock
+! remove mod4 = Hyper_L
+! keycode 66 = Hyper_L
+! add Lock = Hyper_L
+clear Lock
+keycode 94 = Print
+! keycode 107 = Menu
+! ‖ 
+keycode 34 = asciitilde diaeresis
+keycode 35 = plus asterisk
+keycode 47 = slash backslash x x braceleft guillemotright
+keycode 48 = bar quotedbl x x braceright guillemotleft
+keycode 51 = numbersign apostrophe
+keycode 59 = comma semicolon x x less asciicircum
+keycode 60 = period colon x x greater dollar
+keycode 61 = minus underscore x x notsign periodcentered 
+
+keysym n = n N x x ntilde ntilde
+keysym c = c C x x ccedilla Ccedilla
+keysym o = o O x x otilde Otilde
+keysym a = a A x x atilde Atilde
+
+! capslock as escape and compose key
+keycode 66 = Escape Multi_key 
+! ComposeKey " a = ä

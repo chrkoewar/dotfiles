@@ -1,0 +1,784 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
+"               
+"               ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+"               ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+"               ██║   ██║██║██╔████╔██║██████╔╝██║     
+"               ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║     
+"                ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
+"               
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
+" List of Plugins https://vimawesome.com/?q=cat%3Acommand
+" List of autoevents https://vimdoc.sourceforge.net/htmldoc/autocmd.html#autocmd-events 
+" remap special keys    https://unix.stackexchange.com/questions/592769/how-to-remap-characters-like-in-vim-but-in-the-entire-os
+
+" noremap o :'<,'>!xargs -i xdg-open "{}"
+" noremap o "zy<cr>:execute '!lh ' . @z<cr>
+
+" choose file via lf
+function! LF()
+    let temp = tempname()
+    exec 'silent !lf -selection-path=' . shellescape(temp)
+    if !filereadable(temp)
+        redraw!
+        return
+    endif
+    let names = readfile(temp)
+    if empty(names)
+        redraw!
+        return
+    endif
+    exec 'edit ' . fnameescape(names[0])
+    for name in names[1:]
+        exec 'argadd ' . fnameescape(name)
+    endfor
+    redraw!
+endfunction
+command! -bar LF call LF()
+
+
+" jumps
+nnoremap <C-S-Left> ^
+nnoremap <C-S-Right> $
+
+" grep in files an navigate
+nnoremap mt wbi¬<Esc> 
+nnoremap mT wbi·<Esc> 
+nnoremap m1 ^i! <Esc> 
+nnoremap m! ^i! <Esc> 
+nnoremap m? ^i? <Esc> 
+nnoremap mß ^i? <Esc> 
+
+nnoremap +p i<Right><space><Esc>]p
+nnoremap P ]p
+
+nnoremap <leader><CR> i<CR><Esc>
+nnoremap <leader><BS> J
+
+nnoremap <leader>F :Rg 
+nnoremap <c-f> :Rg 
+nnoremap <F3> :cn<cr>
+nnoremap <s-F3> :cp<cr>
+nnoremap <c-F3> :cnf<cr>
+nnoremap <c-s-F3> :cnp<cr>
+
+
+nnoremap <leader><leader> i <Esc>
+nnoremap <leader><return> i <return><Esc>
+
+
+noremap O viW"zy<cr>:execute '!lh ' . @z<cr>
+vnoremap O "zy<cr>:execute '!lh ' . @z<cr>
+
+vnoremap w e
+
+" get rid of delay when exiting insert mode
+set timeoutlen=1000
+set ttimeoutlen=5
+
+" paste with ident
+nnoremap <Tab>p p'[v']>
+nnoremap <Tab>P P'[v']>
+vnoremap <Tab><Tab> >>
+vnoremap <S-Tab><S-Tab> <<
+vnoremap <S-Tab><Tab> <<
+
+nnoremap <Tab><Tab> >>
+nnoremap <S-Tab><S-Tab> <<
+nnoremap <S-Tab><Tab> <<
+
+command Reload source ~/.vim/vimrc
+command Hex %!xxd 
+command HexBack %!xxd -r 
+
+set encoding=utf-8
+set fileencoding=utf-8
+
+" move cursor properly
+nnoremap <up> gk
+nnoremap <down> gj
+" remapping in insert mode causes flickering and getting stcuk at empty lines
+" inoremap <up> <esc>lgki
+" inoremap <down> <esc>lgji
+ 
+nnoremap ; :!
+nnoremap P p
+nnoremap p P
+
+" nnoremap <C-F1> :call ToggleTabline()<CR> 
+" :set showtabline=2
+
+" toggle search highlighting
+nnoremap <F12> :set hlsearch!<CR>
+
+" remap help navigation
+augroup HelpMaps
+    autocmd!
+    autocmd FileType help :nnoremap <buffer> gf <C-]>
+    autocmd FileType help :nnoremap <buffer> gb  <C-t>
+    autocmd FileType help :nnoremap <buffer> <BS>  <C-t>
+augroup END
+
+" code folding
+" set foldmethod=syntax | manual | indent | etc. 	= see :help foldmethod
+set foldmethod=indent
+set foldnestmax=10
+set foldlevel=0
+" set nofoldenable
+
+" toggle folding
+" nnoremap <silent> <F3> za
+" inoremap <silent> <F3> <ESC>za:startinsert<cr>
+nnoremap <silent> <C-k> zc
+inoremap <silent> <C-k> <Esc>zcki
+nnoremap <silent> <C-j> zo
+inoremap <silent> <C-j> <Esc>zoi
+"
+nnoremap <silent> <C-Up> zc
+inoremap <silent> <C-Up> <Esc>zcki
+nnoremap <silent> <C-Down> zo
+inoremap <silent> <C-Down> <Esc>zoi
+" nnoremap <silent> <F4> zm
+" inoremap <silent> <F4> <ESC>zm:startinsert<cr>
+nnoremap <silent> <F5> zr
+inoremap <silent> <F5> <ESC>zr:startinsert<cr>
+inoremap <silent> <M-up> <Esc>zmi
+inoremap <silent> <M-down> <Esc>zri
+nnoremap <silent> <M-up> zm
+nnoremap <silent> <M-down> zr
+
+" start in insert mode
+" au BufRead,BufNewFile * startinsert
+
+" clear cmd line automatically
+autocmd InsertEnter * call s:ClearCommandLine()
+autocmd BufWritePost * call s:ClearCommandLine()
+autocmd CursorHold * call s:ClearCommandLine()
+
+set shortmess=F
+
+" --------------------------------- LINE NUMBERS 
+
+function ToggleNumbers()
+	set norelativenumber!
+	set nonumber!
+endfunction
+
+function NoNumbers()
+	set norelativenumber
+	set nonumber
+endfunction
+
+" ---------------------------------
+
+" move lines up and down
+nnoremap <silent> <C-K> :m-2<CR>
+nnoremap <silent> <C-J> :m+1<CR>
+inoremap <silent> <C-S-Up> <Esc>:m-2<CR>i
+inoremap <silent> <C-S-Down> <Esc>:m+1<CR>i
+nnoremap <silent> <C-S-Up> :m-2<CR>
+nnoremap <silent> <C-S-Down> :m+1<CR>
+
+" allow opening buffers, if current buffer is changed
+set hidden
+
+" cycle through tabs
+inoremap <silent> <M-Right> <Esc>:tabn<CR>i
+inoremap <silent> <M-Left> <Esc>:tabp<CR>i
+nnoremap <silent> <M-Right> :bn<CR>
+nnoremap <silent> <M-Left> :bp<CR>
+nnoremap <silent> <C-l> :bn<CR>
+nnoremap <silent> <C-h> :bp<CR>
+
+" hide eof tildes
+let &fillchars ..= ',eob: '
+
+" Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
+
+" Enable type file detection. Vim will be able to try to detect the type of file is use.
+filetype on
+
+" Enable plugins and load plugin for the detected file type.
+filetype plugin on
+
+" Load an indent file for the detected file type.
+filetype indent on
+
+" Turn syntax highlighting on.
+syntax on
+
+" Highlight cursor line underneath the cursor horizontally.
+" set cursorline
+
+" Highlight cursor line underneath the cursor vertically.
+" set cursorcolumn
+
+" Set shift width to 4 spaces.
+set shiftwidth=4
+
+" Set tab width to 4 columns.
+set tabstop=4
+
+" Use space characters instead of tabs.
+set expandtab
+
+" Do not save backup files.
+set nobackup
+
+" Do not let cursor scroll below or above N number of lines when scrolling.
+set scrolloff=10
+
+" Do not wrap lines. Allow long lines to extend as far as the line goes.
+" set nowrap
+
+" While searching though a file incrementally highlight matching characters as you type.
+set incsearch
+
+" Ignore capital letters during search.
+set ignorecase
+
+" Override the ignorecase option if searching for capital letters.
+" This will allow you to search specifically for capital letters.
+set smartcase
+
+" Show partial command you type in the last line of the screen.
+set showcmd
+
+" Show the mode you are on the last line.
+" set showmode
+
+" Show matching words during a search.
+set showmatch
+
+" Use highlighting when doing a search.
+set nohlsearch
+
+" Set the commands to save in history default number is 20.
+set history=20
+
+" Enable auto completion menu after pressing TAB.
+set wildmenu
+
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+
+" There are certain files that we would never want to edit with Vim.
+" Wildmenu will ignore files with these extensions.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+
+
+
+" PLUGINS ---------------------------------------------------------------- {{{
+
+" autoload plugins
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir.'/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" ------------------------------------------------
+"
+call plug#begin('~/.vim/plugged')
+
+" todo.txt syntax and editing
+Plug 'freitass/todo.txt-vim'
+noremap # <Nop>
+let maplocalleader="#"
+
+" help macros repeat via.
+" Plug 'tpope/vim-repeat'
+
+" change surrounding bracket and hpyens easily
+" Plug 'tpope/vim-surround'
+
+" Table Mode
+" Plug 'dhruvasagar/vim-table-mode'
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+" Plug 'junegunn/vim-easy-align'
+
+" :Git command for github version control etc.
+" Plug 'tpope/vim-fugitive'
+
+" markdown including folding
+Plug 'preservim/vim-markdown'
+
+" Margins // :MuttonToggle
+Plug 'gabenespoli/vim-mutton'
+
+" highlighting of the current line
+Plug 'junegunn/limelight.vim'
+let g:limelight_conceal_ctermfg = 'DarkGray'
+
+" comment lines out 
+Plug 'tpope/vim-commentary'
+
+" netrw
+Plug 'vim-scripts/netrw.vim'
+
+" Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" browse directory with '-'
+" Plug 'tpope/vim-vinegar'
+
+" nerd tree
+" Plug 'preservim/nerdtree'
+
+" Unmanaged plugin (manually installed and updated)
+Plug 'arcticicestudio/nord-vim'
+" matching brackets in red
+
+" Bookmarks
+Plug 'MattesGroeger/vim-bookmarks'
+
+" simple black and white tabline
+" Plug 'mkitt/tabline.vim'
+
+" buffer tabline
+" Plug 'ap/vim-buftabline'
+" let g:buftabline_show=1
+" let g:buftabline_indicators=1
+
+" hi BufTabLineCurrent ctermfg=Red
+" hi BufTabLineActive ctermfg=Red
+" BufTabLineHidden
+" BufTabLineFill
+" BufTabLineModifiedCurrent
+" BufTabLineModifiedActive
+" BufTabLineModifiedHidden
+
+let g:buftabs_only_basename = 1
+let g:buftabs_marker_modified = '+'
+let g:buftabs_separator = ''
+let g:buftabs_marker_start = '['
+let g:buftabs_marker_end = ']'
+" nnoremap b :call Buftabs_show(-1)<cr>
+
+Plug 'vim-scripts/buftabs'
+
+
+" close buffers without stress with Bdelete
+Plug 'moll/vim-bbye'
+
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
+
+" }}}
+
+" --- Bookmarks ---
+nnoremap <silent> <F1> :BookmarkToggle<cr>
+nnoremap <silent> <F2> :BookmarkNext<cr>
+
+let g:bookmark_no_default_key_mappings = 1
+function! BookmarkMapKeys()
+    nmap mm :edit<cr>:BookmarkToggle<CR>
+    nmap mi :BookmarkAnnotate<CR>
+    nmap mn :BookmarkNext<CR>
+    nmap mp :BookmarkPrev<CR>
+    nmap ma :BookmarkShowAll<CR>
+    nmap mc :BookmarkClear<CR>
+    nmap mx :BookmarkClearAll<CR>
+    nmap mkk :BookmarkMoveUp
+    nmap mjj :BookmarkMoveDown
+endfunction
+function! BookmarkUnmapKeys()
+    unmap mm
+    unmap mi
+    unmap mn
+    unmap mp
+    unmap ma
+    unmap mc
+    unmap mx
+    unmap mkk
+    unmap mjj
+endfunction
+autocmd BufEnter * :call BookmarkMapKeys()
+autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+" ---
+
+" --- status border
+set laststatus=0
+set noshowmode
+" set noshowcmd
+" set noruler
+
+" ruler is not the status line, but above
+" set rulerformat=%l,%c%V%=%P
+
+" hide ruler
+set noruler
+
+" ---------------------------------
+
+" --- TOGGLE INFOS
+function! ToggleHiddenAll()
+endfunction
+
+" CTRL + H
+" show/hide information
+
+let s:hidden_all = 1
+function! ToggleStatusBar()
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set noshowmode
+        set noruler
+        set laststatus=0
+        " set noshowcmd
+    else
+        let s:hidden_all = 0
+        set noshowmode
+        set noruler
+        set laststatus=2
+        " set showcmd
+    endif
+endfunction
+
+let s:tabvis = 1
+function! ToggleTabline()
+    if s:tabvis  == 1
+        let s:tabvis = 0
+        set showtabline=0
+    else
+        let s:tabvis = 1
+        set showtabline=2
+    endif
+endfunction
+
+" ---------------------------------
+
+" user defined commands
+command! VisualBlockMode normal! <C-v>
+command! VisualLineMode normal! <V>
+command! VisualMode normal! <v>
+
+" start selection from insert mode
+" inoremap <silent> vv <Esc>v
+
+" nnoremap <silent> <C-h> :call ToggleStatusBar()<CR>
+inoremap <silent> <C-h> <Esc>bdwi
+
+" Navigate :split/:vsplit windows
+" nnoremap <c-down> <c-w>j
+" nnoremap <c-up> <c-w>k
+" nnoremap <c-left> <c-w>h
+" nnoremap <c-right> <c-w>l
+
+" leader key shal be space
+let mapleader = " "
+
+" q = insert mode // qq = exit insert mode
+
+" inoremap qq <Esc>
+nnoremap q :Bdelete<cr> 
+nnoremap <leader>q :%bd<cr>:e#<cr>:bd#<cr>
+nnoremap Q :Bdelete!<cr> 
+
+" X = Backspace
+nnoremap X D
+noremap X D
+
+" set go+=a   " Visual selection automatically copied to the clipboard
+
+" remap Yank to Copy
+inoremap <C-p> <C-r>"
+inoremap <C-x> <Esc>:call CopyToClipboard()<cr>i
+nnoremap <C-x> :call CopyToClipboard()<CR>
+vnoremap c y:call CopyToClipboard()<cr>
+nnoremap c :call CopyToClipboard()<cr>
+
+nnoremap C :let @"=system(g:clipboard_command)<CR>
+vnoremap C :let @"=system(g:clipboard_command)<CR>
+
+function! CopyToClipboard()
+" yank
+echo system('echo '.shellescape(@").' | sed -z "s/\n\+$/"/ | xsel -ib')
+endfunction
+
+" c-l	clear cmd line
+" nnoremap <C-l> :echon ''<CR>
+" inoremap <C-l> <Esc>:echon ''<CR>i
+
+" c-x	copy line
+
+" c-s-l	echo current line number
+" nnoremap ln :-=<CR>
+
+function! s:ClearCommandLine()
+	echon ''
+endfunction
+
+" Press <leader>p to print the current file to the default printer from a Linux operating system.
+" View available printers:   lpstat -v
+" Set default printer:       lpoptions -d <printer_name>
+" <silent> means do not display output.
+nnoremap <silent> <C-p> :%w !lp<CR>
+
+" F6 compile current script
+nnoremap <F6> :w <CR>:!clear <CR>:!compile % <CR>
+
+" --------------------------------- PLuG: BUFFER LINE
+
+colorscheme nord
+
+au VimEnter * :MuttonToggle
+nnoremap <F10> :MuttonToggle<CR>
+inoremap <F10> <ESC>:MuttonToggle<CR>i
+let g:mutton_disable_keymaps=1
+let g:mutton_min_center_width = 88
+au TabNew * :MuttonToggle
+
+" nnoremap <silent> <leader>r :LeaderfMru<cr>
+inoremap <silent> <C-s> <Esc>:w<CR>i
+nnoremap <silent> <C-s> :w<CR>
+nnoremap <silent> <leader>d dd
+nnoremap <silent> <leader>x "_dd
+nnoremap <silent> s :w<CR>
+nnoremap <silent> <leader>s :w<CR>
+inoremap <silent> <C-q> <Esc>:Bdelete<CR>i
+nnoremap <silent> <C-q> !:Bdelete<CR>
+nnoremap <silent> <leader>y :Commentary<CR>
+nnoremap <silent> <C-o> :Commentary<CR>
+inoremap <silent> <C-o> <Esc>:Commentary<CR>i
+" nnoremap <silent> <leader>c :tabclose<CR>
+nnoremap <silent> <leader>c :bp<bar>sp<bar>bn<bar>bd<CR>
+nnoremap <silent> <leader>n :enew<CR>
+" inoremap <C-k> <C-o><S-d>
+" nnoremap <C-k> d$
+nnoremap <C-u> d^
+inoremap <S-left> <Home>
+inoremap <S-right> <End>
+nnoremap <S-left> <Home>
+nnoremap <S-right> <End>
+nnoremap <C-d> yyp
+inoremap <C-d> <Esc>yypi
+vnoremap <C-d> y<Esc>p
+vnoremap <Tab> <S-lt>
+nnoremap <S-Tab> <lt>
+
+nnoremap <Return> i
+nnoremap <S-Return> a
+nnoremap <C-z> u
+inoremap <C-z> <Esc>ui
+inoremap <C-b> <C-r>"
+nnoremap U :redo<cr>
+" inoremap <C-r> <Esc>:redo<cr>i
+nnoremap <C-R> <C-R>
+
+" keybindings for LaTeX
+nnoremap <leader><lt> <Home>i» <Esc>
+autocmd FileType tex inoremap ++ {}<ESC>hi
+autocmd FileType tex inoremap 8# ()<ESC>i
+autocmd FileType tex inoremap 88# []<ESC>i
+autocmd FileType tex inoremap 7# {}<ESC>i
+autocmd FileType tex inoremap (# ()<ESC>i
+autocmd FileType tex inoremap [# []<ESC>i
+autocmd FileType tex inoremap {# {}<ESC>i
+
+" Display method for folded text ---------------------------------
+function! NeatFoldText()
+    let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+    let lines_count = v:foldend - v:foldstart + 1
+    let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+    let foldchar = matchstr(&fillchars, 'fold:\zs.')
+    let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+    let foldtextend = lines_count_text . repeat(foldchar, 8)
+    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+    return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    " let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+	let line="…" 
+    let fillcharcount = windowwidth +2 
+	return line . repeat(" ",fillcharcount)
+endfunction " }}}
+
+set foldtext=MyFoldText()
+
+" recoloring --------------------------
+
+
+" center text in window with borders via plugin
+:hi Folded ctermbg=none ctermfg=DarkGray
+" *cterm-colors*
+
+" NR-16   NR-8    COLOR NAME
+" 0       0       Black
+" 1       4       DarkBlue
+" 2       2       DarkGreen
+" 3       6       DarkCyan
+" 4       1       DarkRed
+" " 5       5       DarkMagenta
+" 6       3       Brown, DarkYellow
+" 7       7       LightGray, LightGrey, Gray, Grey
+" 8       0*      DarkGray, DarkGrey
+" 9       4*      Blue, LightBlue
+" 10      2*      Green, LightGreen
+" 11      6*      Cyan, LightCyan
+" 12      1*      Red, LightRed
+" 13      5*      Magenta, LightMagenta
+" 14      3*      Yellow, LightYellow
+" 15      7*      White
+
+hi TabLine      ctermfg=DarkGray ctermbg=None     cterm=NONE
+hi TabLineFill  ctermfg=DarkGray  ctermbg=None     cterm=NONE
+hi TabLineSel   ctermfg=DarkGreen  ctermbg=None  cterm=NONE
+
+" remove vertical split line; needs to be autocmd or space won't be interpreted
+autocmd VimEnter * :set fillchars+=vert:\ 
+"
+nnoremap <silent> <C-u> :call ToggleNumbers()<cr>
+nnoremap <silent> <leader>u :call ToggleNumbers()<cr>
+
+" change Cursorline in Insertmode
+
+" Enable CursorLine
+set cursorline
+
+" Default Colors for CursorLine
+highlight  CursorLine ctermbg=None 
+
+" Change Color when entering Insert Mode
+autocmd InsertEnter * highlight  CursorLine ctermbg=Black
+
+" Revert Color to default when leaving Insert Mode
+autocmd InsertLeave * highlight  CursorLine ctermbg=None
+
+" enable custom syntax for .txt
+au BufNewFile,BufRead *.txt set filetype=notes
+
+" override syntax for todo.txt
+au BufNewFile,BufRead todo.txt set filetype=todo
+au BufNewFile,BufRead done.txt set filetype=todo
+au BufNewFile,BufRead archive.txt set filetype=todo
+
+highlight ErrorMsg ctermfg=Black ctermbg=Red
+
+" color of search hits
+highlight Search ctermbg = Red
+
+" make cursors wrap to next/prev line
+set whichwrap+=<,>,h,l,[,]
+
+let g:clipboard_command = 'xclip -selection clipboard -o'
+
+" paste from clipboard with <leader>p
+nnoremap <leader>p O<Esc>:let @9=system(g:clipboard_command)<CR>"9p
+noremap <leader>p O<Esc>:let @9=system(g:clipboard_command)<CR>"9p
+
+noremap <leader>j  o<Esc>k
+noremap <leader>k  O<Esc>j
+
+noremap <leader><Down>  o<Esc>k
+noremap <leader><Up>  O<Esc>j
+
+" nnoremap <leader>f :Files<cr>
+nnoremap <leader>f :LF<cr>
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>r :History<cr>
+" Empty value to disable preview window altogether
+" let g:fzf_vim.preview_window = []
+" highlight clear SignColumn
+" let g:bookmark_sign = '>>'
+" BookmarkLine 
+
+nnoremap m, :BookmarkAnnotate<CR>
+highlight BookmarkSign ctermfg=red ctermbg=none
+highlight BookmarkLine ctermfg=none ctermbg=none
+highlight BookmarkAnnotationSign ctermfg=red ctermbg=none
+let g:bookmark_sign = ''
+sign define bookmark text= texthl=BookmarkSign
+let g:bookmark_highlight_lines = 1
+let g:bookmark_center = 1
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_display_annotation = 1
+
+" dirty hack, because some crap does not load right
+autocmd BufEnter * highlight BookmarkAnnotationLine ctermfg=none ctermbg=none
+autocmd BufEnter * highlight BookmarkLine ctermfg=none ctermbg=none
+
+let g:lastWindows= []
+let g:lastWinName = ""
+
+function! SaveLastWindow()
+  if &bt == '' || &bt == 'help' || &ft == 'netranger' "|| &bt == 'nofile'
+    let cur= expand( '<afile>' )
+
+    if cur == g:lastWinName || cur == "!sh" || cur == ""
+      return
+    endif 
+
+    call add(g:lastWindows,cur) 
+
+    let g:lastWinName=cur
+  endif
+endfunction 
+
+augroup bufclosetrack
+  au!
+  autocmd BufWinLeave * call SaveLastWindow()
+augroup END
+
+function! LastWindow()
+  exe "split " . g:lastWinName
+endfunction
+
+command -nargs=0 LastWindow call LastWindow()
+
+" nmap <leader>t :LastWindow<CR>
+" nmap <leader>t :call fzf#vim#cust_history(g:lastWindows)<CR>
+
+" edit file via lf
+nnoremap <leader>e :LF<cr>
+
+
+" " folding for .md markdown files
+" function! MarkdownLevel()
+"     if getline(v:lnum) =~ '^# .*$'
+"         return ">1"
+"     endif
+"     if getline(v:lnum) =~ '^## .*$'
+"         return ">2"
+"     endif
+"     if getline(v:lnum) =~ '^### .*$'
+"         return ">3"
+"     endif
+"     if getline(v:lnum) =~ '^#### .*$'
+"         return ">4"
+"     endif
+"     if getline(v:lnum) =~ '^##### .*$'
+"         return ">5"
+"     endif
+"     if getline(v:lnum) =~ '^###### .*$'
+"         return ">6"
+"     endif
+"     return "="
+" endfunction
+
+" au BufEnter *.md setlocal foldexpr=MarkdownLevel()
+" au BufEnter *.md setlocal foldmethod=expr
+
+" comment
+nnoremap # :Commentary<cr>
+vnoremap # :Commentary<cr>
+

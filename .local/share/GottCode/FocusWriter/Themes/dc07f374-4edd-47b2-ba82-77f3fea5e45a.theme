@@ -1,0 +1,41 @@
+[General]
+LoadColor=#756748
+Name=Painted Forest
+
+[Background]
+Color=#666666
+Image=/home/xaos/optisches/1508014336012 ¬paint ¬light ¬landscape ¬fav.jpg
+ImageFile=2-b8f5a98d21bef6ef8f38913365b5873e160ad18a.jpg
+Type=5
+
+[Foreground]
+Color=#ffffff
+Margin=180
+Opacity=0
+Padding=10
+Position=1
+Rounding=0
+RoundingDisabled=10
+Width=800
+
+[ForegroundBlur]
+Enabled=false
+Radius=32
+
+[ForegroundShadow]
+Color=#000000
+Enabled=false
+Offset=2
+Radius=8
+
+[Spacings]
+IndentFirstLine=false
+LineSpacing=100
+ParagraphAbove=0
+ParagraphBelow=0
+TabWidth=48
+
+[Text]
+Color=#000000
+Font="Noto Sans Mono Black,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+Misspelled=#ff0000

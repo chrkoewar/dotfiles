@@ -1,0 +1,3 @@
+#!/bin/bash
+rm $DONE_FILE
+touch $DONE_FILE

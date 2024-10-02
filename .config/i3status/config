@@ -1,0 +1,138 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        #color_good = "#88ff88"
+        #color_bad = "#880000"
+        # color_good = "#ffffff"
+        color_good = "#FF9900"
+        color_bad = "#663300"
+        interval = 1
+        output_format = i3bar
+        separator = '|'
+}
+
+# order += "path_exists VPN"
+order += "ethernet _first_"
+order += "wireless _first_"
+order += "tztime localtime"
+order += "tztime localdate"
+order += "memory"
+order += "disk /"
+order += "cpu_usage"
+order += "cpu_temperature 1"
+#order += "load"
+order += "battery 0"
+order += "volume master"
+
+ipv6
+{
+  format_down = ""
+}
+
+cpu_temperature 1
+{
+  format = "%degrees°C "
+  path = "/sys/class/thermal/thermal_zone2/temp"
+}
+
+#    
+cpu_temperature 2
+{
+  format = "%degrees°C"
+  path = "/sys/class/drm/card0/device/hwmon/hwmon1/temp1_input"
+}
+
+wireless _first_ {
+        format_up = "WiFi %ip | %essid: %quality"
+        format_down = ""
+}
+
+#    
+ethernet _first_ {
+
+        # if you use %speed, i3status requires root privileges
+        format_up = "LAN %ip"
+        # format_up = "%interface %ip (%speed)"
+        format_down = ""
+}
+
+#    
+ethernet enp7s0 {
+        # if you use %speed, i3status requires root privileges
+        format_up = "%interface %ip (%speed)"
+        format_down = "%interface"
+}
+
+
+battery 0 {
+        format = "%status %percentage"
+}
+
+run_watch DHCP {
+        pidfile = "/var/run/dhclient*.pid"
+        format = "%title"
+        format_down = ""
+}
+
+
+# mullvad_location {
+#     command = "mullvad status | sed 's/^.* in //'"
+#     format = "mul"
+# }
+ 
+path_exists VPN {
+# path exists when a VPN tunnel launched by nmcli/nm-applet is active
+  path = "/proc/sys/net/ipv4/conf/tun0"
+  # separator = false
+  # separator_block_width = 8
+  format = "VPN: Culture Academy"
+  format_down = ""
+}
+
+run_watch VPN {
+        pidfile = "/var/run/NetworkManager/nm-openvpn-*"
+}
+
+#    
+tztime localtime {
+        format = "%H:%M"
+}
+
+#    
+tztime localdate {
+        format = "%m-%d-%Y"
+}
+
+# load {
+#         format = "%5min"
+# }
+
+#     
+disk "/" {
+        format = "SSD: %avail"
+        prefix_type = custom
+}
+
+memory {
+threshold_degraded = "10%"
+format="RAM: %free"
+}
+
+#    
+volume master {
+        format = "%volume"
+        format_muted = "♪: muted (%volume)"
+        device = "pulse:0"
+}
+
+#    
+cpu_usage {
+    format = "%usage"
+}

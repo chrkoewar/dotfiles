@@ -1,0 +1,41 @@
+[General]
+LoadColor=#2d252c
+Name=Dark Aurora
+
+[Background]
+Color=#666666
+Image=/home/xaos/img/11080691_453622014792972_1400787038528615338_o ¬sky ¬write ¬colour.jpg
+ImageFile=2-bc7055b088231113ffd8a563286bef6c61042931.jpg
+Type=5
+
+[Foreground]
+Color=#ffffff
+Margin=250
+Opacity=0
+Padding=10
+Position=1
+Rounding=0
+RoundingDisabled=10
+Width=800
+
+[ForegroundBlur]
+Enabled=false
+Radius=32
+
+[ForegroundShadow]
+Color=#000000
+Enabled=false
+Offset=2
+Radius=8
+
+[Spacings]
+IndentFirstLine=false
+LineSpacing=100
+ParagraphAbove=0
+ParagraphBelow=0
+TabWidth=48
+
+[Text]
+Color=#ffffff
+Font="Noto Sans Mono Medium,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+Misspelled=#ff0000

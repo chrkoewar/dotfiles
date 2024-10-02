@@ -1,0 +1,41 @@
+[General]
+LoadColor=#5e5e5e
+Name=Sunny Grey
+
+[Background]
+Color=#666666
+Image=/home/xaos/img/Ngarahoe ¬landscape ¬detail ¬bw ¬write.jpg
+ImageFile=2-7d529368ad5016964eebaefa092f0db343978a54.jpg
+Type=5
+
+[Foreground]
+Color=#ffffff
+Margin=200
+Opacity=0
+Padding=10
+Position=1
+Rounding=0
+RoundingDisabled=10
+Width=800
+
+[ForegroundBlur]
+Enabled=false
+Radius=32
+
+[ForegroundShadow]
+Color=#000000
+Enabled=false
+Offset=2
+Radius=8
+
+[Spacings]
+IndentFirstLine=false
+LineSpacing=100
+ParagraphAbove=0
+ParagraphBelow=0
+TabWidth=48
+
+[Text]
+Color=#ffffff
+Font="Noto Sans Mono Medium,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+Misspelled=#ff0000

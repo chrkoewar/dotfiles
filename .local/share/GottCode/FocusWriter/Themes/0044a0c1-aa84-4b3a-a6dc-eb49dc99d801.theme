@@ -1,0 +1,41 @@
+[General]
+LoadColor=#575357
+Name=Plant Love
+
+[Background]
+Color=#666666
+Image=/home/xaos/img/Simon Jordan 01 ¬detail.jpg
+ImageFile=2-1e27bdf09caa1fcf6de3071d8feca099baa1c9d9.jpg
+Type=5
+
+[Foreground]
+Color=#ffffff
+Margin=150
+Opacity=0
+Padding=10
+Position=1
+Rounding=0
+RoundingDisabled=10
+Width=800
+
+[ForegroundBlur]
+Enabled=false
+Radius=32
+
+[ForegroundShadow]
+Color=#000000
+Enabled=false
+Offset=2
+Radius=8
+
+[Spacings]
+IndentFirstLine=false
+LineSpacing=100
+ParagraphAbove=0
+ParagraphBelow=0
+TabWidth=48
+
+[Text]
+Color=#ffffff
+Font="Noto Sans Mono Medium,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+Misspelled=#ff0000

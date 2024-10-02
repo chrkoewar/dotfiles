@@ -1,0 +1,86 @@
+#
+# config: newsboat
+# docu: https://man.archlinux.org/man/community/newsboat/newsboat.1.en
+#       https://newsboat.org/releases/2.20.1/docs/newsboat.html
+
+
+show-title-bar no
+show-keymap-hint no
+show-read-articles yes
+
+ignore-mode "download"
+ignore-article "https://www.youtube.com/feeds/videos.xml?UCeqKIgPQfNInOswGRWt48kQ" "title !# \"Markus Lanz\""
+
+auto-reload yes
+
+external-url-viewer "geturl|browse"
+# external-url-viewer "extract_url|browse"
+# external-url-viewer "urlview"
+bind-key TAB show-urls
+bind-key U show-urls
+bind-key ^U show-urls
+
+# bind-key LEFT quit urlview
+
+unbind-key A
+unbind-key C
+bind-key - mark-feed-read
+bind-key w mark-feed-read
+bind-key W mark-all-feeds-read
+bind-key e open 
+bind-key E enqueue
+bind-key x pb-delete
+
+bind-key RIGHT open
+bind-key LEFT quit
+
+bind-key LEFT quit urlview
+bind-key RIGHT show-urls article
+
+bind-key r toggle-article-read
+bind-key R reload-all
+
+confirm-mark-feed-read no
+confirm-mark-all-feeds-read no
+
+keep-articles-days 0
+max-items        100
+
+browser          links
+#show-read-feeds  no
+
+color background         default   default
+color listnormal         blue   default
+color listnormal_unread  yellow   default
+color listfocus          black    yellow
+color listfocus_unread   black     yellow   bold
+color hint-key            yellow  black   bold
+color hint-keys-delimiter yellow  black
+color hint-separator      yellow  black  bold
+color hint-description    yellow  black
+color info               default   black
+color article            green default
+
+# format
+#articlelist-format "%4i %f %D %6L %?T?|%-17T| ?%t"
+articlelist-format "%-86t | %D | %T "
+
+# highlights
+highlight article "^(Title):.*$" blue default
+highlight article "https?://[^ ]+" red default
+highlight article "\\[image\\ [0-9]+\\]" green default
+
+browser linkhandler
+macro . open-in-browser
+macro i set browser "feh %u"; open-in-browser ; set browser linkhandler
+macro v set browser "i3 exec mpv"; open-in-browser; set browser linkhandler
+
+# podboat config
+# download-path "~/music/Hörspiele/%h/%N"
+download-path "~/tmp/nas/Hörspiele"
+#podlist-format "%i %u %-20S %F"
+podlist-format "%b | %p%% | %-20S"
+max-downloads 5
+player "mp3rn"
+
+# delete-played-files

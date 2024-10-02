@@ -1,0 +1,41 @@
+[General]
+LoadColor=#4d5446
+Name=anime lake
+
+[Background]
+Color=#666666
+Image=/home/xaos/optisches/1331553170198 ¬landscape ¬anime ¬fav.jpg
+ImageFile=2-6562ee2ce8038ecad1c2f66ec60a5bd5b74da2dd.jpg
+Type=5
+
+[Foreground]
+Color=#000000
+Margin=65
+Opacity=50
+Padding=10
+Position=1
+Rounding=0
+RoundingDisabled=10
+Width=800
+
+[ForegroundBlur]
+Enabled=false
+Radius=32
+
+[ForegroundShadow]
+Color=#000000
+Enabled=false
+Offset=2
+Radius=8
+
+[Spacings]
+IndentFirstLine=false
+LineSpacing=100
+ParagraphAbove=0
+ParagraphBelow=0
+TabWidth=48
+
+[Text]
+Color=#ffffff
+Font="Noto Sans Mono Black,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+Misspelled=#ff0000

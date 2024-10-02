@@ -1,0 +1,41 @@
+[General]
+LoadColor=#245965
+Name=The Things to Come
+
+[Background]
+Color=#666666
+Image=/home/xaos/img/Simon Stalenhag 15 ¬paint ¬scifi.jpg
+ImageFile=2-5f858c7d3acd04bc548c0535d86e8e2c18722f1f.jpg
+Type=5
+
+[Foreground]
+Color=#ffffff
+Margin=150
+Opacity=0
+Padding=10
+Position=1
+Rounding=0
+RoundingDisabled=10
+Width=800
+
+[ForegroundBlur]
+Enabled=false
+Radius=32
+
+[ForegroundShadow]
+Color=#000000
+Enabled=false
+Offset=2
+Radius=8
+
+[Spacings]
+IndentFirstLine=false
+LineSpacing=100
+ParagraphAbove=0
+ParagraphBelow=0
+TabWidth=48
+
+[Text]
+Color=#ffffff
+Font="Noto Sans Mono Medium,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+Misspelled=#ff0000

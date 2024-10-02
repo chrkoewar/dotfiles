@@ -1,0 +1,473 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# xaos 2023-03-29
+
+# Mod1 (usually aka "Alt" or "Meta")
+# Mod2 ("NumLock")
+# Mod3 (unused on default QWERTY layout)
+# Mod4 (aka "Super" or "Windows-Key")
+# Mod5 (e.g. "Alt_Gr" on german QWERTZ layout)
+# Shift
+# Control
+# Mode_Switch
+
+# multi monitor support
+# move complete workspaces to left or right display
+bindsym $mod+Ctrl+Up move workspace to output above
+bindsym $mod+Ctrl+Down move workspace to output below
+# bindsym $mod+Ctrl+Shift+l move workspace to output right
+# bindsym $mod+Ctrl+Shift+h move workspace to output left
+
+# ---------------------------------
+#          Autostart
+# ---------------------------------
+# morse patterns to run scripts
+exec pass oma|sudo -S evmorse $(id -u) /dev/input/event3
+# automatically choose tiling direction
+exec_always autotiling
+# synology drive sync
+exec --no-startup-id synology-drive
+# keyboard navigation mouse replacement, trigger by ^,
+exec --no-startup-id keynav
+# libinput mouse gestures
+# exec --no-startup-id libinput-gestures
+# keyboard rate
+exec --no-startup-id xset r rate 300 70
+# hide mouse when typing
+exec --no-startup-id xbanish
+# hotstring by autokey
+exec --no-startup-id autokey-qt
+# AHK alternative to autokey-qt
+# exec --no-startup-id ahk_x11 /home/xaos/src/ahk_x11.ahk
+# dim screen for night time
+exec --no-startup-id redshift -l 51.507065019502804:11.877614513172999
+# NetworkManager is the most popular way to manage wireless networks on Linux
+exec --no-startup-id nm-applet 
+# background image
+exec --no-startup-id ~/.fehbg &
+# exec --no-startup-id nitrogen --restore
+# transparency and stuff
+exec --no-startup-id picom -b
+# power manager
+exec --no-startup-id xfce4-power-manager
+# autolock
+# exec --no-startup-id xautolock -time 10 -locker 'blurlock && systemctl suspend'
+# pc stats on desktop
+# exec --no-startup-id start_conky_black
+# cursor fix
+# exec --no-startup-id fix_xcursor
+# music playlist in background
+exec --no-startup-id mocp --server
+# start at-daemon for timing events
+# exec --no-startup-id systemctl start atd
+# remap capslock to hyper key for recognition via autokey
+exec xmodmap ~/.Xmodmap
+# autostart and ranger und terminal
+exec battlestation
+# -----------------------------------------
+#              transparency
+# -----------------------------------------
+bindsym $mod+Mod1+plus exec --no-startup-id  ~/src/change_window_opacity.sh -i;exec notify-send -t 500 'opacity-'
+bindsym $mod+Mod1+minus exec --no-startup-id  ~/src/change_window_opacity.sh -d;exec notify-send -t 500 'opacity+'
+
+
+# ------------------------------------------
+#           sound / colume control
+# ------------------------------------------
+
+exec --no-startup-id volumeicon
+
+bindsym $mod+F8 exec --no-startup-id amixer set Master "1%-"
+bindsym $mod+F9 exec --no-startup-id amixer set Master "1%+"
+
+bindsym $mod+minus exec --no-startup-id amixer set Master "1%-"
+bindsym $mod+plus exec --no-startup-id amixer set Master "1%+"
+
+# --------------------------------------------
+#        mmedia control
+# --------------------------------------------
+# control multiple players via musichandler
+bindsym $mod+a exec --no-startup-id mh p
+bindsym $mod+s exec --no-startup-id mh t
+bindsym $mod+d exec --no-startup-id mh n
+bindsym $mod+Shift+d exec --no-startup-id mh f
+bindsym $mod+Shift+a exec --no-startup-id mh b
+bindsym $mod+Control+s exec --no-startup-id mh choose
+bindsym $mod+Mod1+s exec --no-startup-id mh current
+bindsym $mod+Shift+s exec --no-startup-id i3ap
+bindsym $mod+Shift+plus exec --no-startup-id mh vp
+bindsym $mod+Shift+minus exec --no-startup-id mh vm
+# ---------------------------------------------
+#                 clipboard stack
+# --------------------------------------------
+bindsym $mod+v exec --no-startup-id command-on-selection
+bindsym $mod+c exec --no-startup-id command-on-clip
+# bindsym $mod+shift+c exec --no-startup-id stackcopy
+# bindsym $mod+shift+v exec --no-startup-id stackpaste
+# bindsym $mod+shift+x exec --no-startup-id stackclear
+# ---------------------------------------------
+#                   settings
+# --------------------------------------------
+
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+
+# move floating windows with mod
+floating_modifier $mod
+
+# no mouse focus
+focus_follows_mouse no
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# set focus on activated window
+focus_on_window_activation focus
+
+workspace_auto_back_and_forth yes
+
+# -------------------------------------------
+#                    tweaks
+# -------------------------------------------
+
+# turn off beep in console
+# see: https://unix.stackexchange.com/questions/452978/how-to-completely-turn-off-system-beep-sounds-forever-for-good-for-real
+exec xset b off
+exec xset b 0 0 0
+
+# bindsym $mod+m exec xdotool mousemove 1920 1010
+# bindsym $mod+m exec monoff
+
+# ---------------------------------------------
+#                   utilities
+# --------------------------------------------
+# trigger keyboard mouse selection with keynav
+# launch urls / files
+bindsym $mod+o exec --no-startup-id open-selection
+
+# start a terminal; i3-sensible-terminal is a wrapper, starting up installed terminals
+# bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec kitty
+bindsym Mod1+Shift+Return exec term lf
+bindsym Mod1+Ctrl+Return exec term vim
+bindsym $mod+Shift+f exec kitty -T terminal-floating
+
+# reload the configuration file
+# bindsym $mod+Shift+r reload
+
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $mod+x mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, sus(p)end, (h)ibernate, (r)eboot, (s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym p exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym s exec smbdis; exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# start program launcher: dmenu
+# launcher via menu button
+
+bindsym Menu exec --no-startup-id launch
+bindsym ctrl+Menu exec --no-startup-id i3-dmenu-desktop
+bindsym Shift+Menu exec --no-startup-id bookmarks
+bindsym Mod1+Menu exec --no-startup-id cmdhistory
+bindsym $mod+Menu exec --no-startup-id ws
+bindsym $mod+Tab exec --no-startup-id ws
+
+# programs by categories
+# bindsym $mod+z exec morc_menu
+
+# kill notifications
+# bindsym $mod+F10 exec --no-startup-id killall dunst
+
+# ----------------------------------------------
+#                      design
+# ----------------------------------------------
+font xft:Adobe Source Code Pro 11
+
+# set default desktop layout (  default is tiling)
+# workspace_layout tabbed <stacking|tabbed>
+
+# Hide borders
+hide_edge_borders none
+
+# You can also use any non-zero value if you'd like to have a border
+for_window [class=".*"] border pixel 1
+
+new_window normal
+
+new_float  normal
+
+# ---------------- Theme colors ---------------------
+# red border around active window (see 2nd argument)
+# class                   border  backgr. text    indic.   child_border
+client.focused          #556064 #9e0000 #80FFF9 #FDF6E3
+client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
+client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
+client.urgent           #CB4B16 #FF0000 #1ABC9C #268BD2
+client.placeholder      #000000 #0c0c0c #ffffff #000000 
+client.background       #2B2C2B
+
+
+# -------------- borders ----------------
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders on
+
+# hide borders on edge of screen
+# hide_edge_borders none|vertical|horizontal|both|smart|smart_no_gaps
+
+# configure border style <normal|1pixel|pixel xx|none|pixel>
+default_border pixel 1
+default_floating_border normal
+
+# change borders
+bindsym $Mod+e border toggle
+
+# bindsym $mod+b border none
+# bindsym shift+$mod+b border pixel 1
+# bindsym $mod+u border normal
+
+
+# -------------- gaps ----------------------
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+smart_gaps on
+
+# no gaps
+gaps inner 0
+gaps outer 0
+
+# change gaps
+bindsym $Mod+Control+plus                gaps inner current plus  5
+bindsym $Mod+Control+minus               gaps inner current minus 5
+bindsym $Mod+Mod1+Shift+plus          gaps outer current plus  5
+bindsym $Mod+Mod1+Shift+minus         gaps outer current minus 5
+bindsym $Mod+Control+Mod1+plus        gaps inner all     plus  5
+bindsym $Mod+Control+Mod1+minus       gaps inner all     minus 5
+bindsym $Mod+Control+Shift+plus  gaps outer all     plus  5
+bindsym $Mod+Control+Shift+minus gaps outer all     minus 5
+
+# -----------------------------------------------
+#                   tiling keys
+# -----------------------------------------------
+
+# kill focused window
+bindsym $mod+q kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Mod1+Return move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+Shift+Return scratchpad show
+
+# split in horizontal orientation
+# bindsym $mod+Shift+plus split h;exec notify-send -t 500 'tile horizontally'
+
+# split in vertical orientation
+# bindsym $mod+Shift+minus split v;exec notify-send -t 500 'tile vertically'
+
+set $tiledir "h"
+
+# split toggle
+# bindsym $mod+n split toggle; exec notify-send -t 500 'split toggle'
+
+# fullscreen
+# bindsym $mod+f fullscreen toggle
+bindsym $mod+Return fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+w layout toggle 
+
+# direct toggle
+# bindsym $mod+i layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+
+# toggle sticky
+# bindsym $mod+Mod1+s sticky toggle
+
+# focus the parent container
+bindsym $mod+Ctrl+j focus parent
+
+# focus the child container
+bindsym $mod+Ctrl+k focus child
+
+# ---------- floating -------------------
+
+# toggle tiling / floating
+bindsym $mod+f floating toggle
+
+# change focus between tiling / floating windows
+# bindsym $mod+Tab focus mode_toggle
+
+# -------- resize and move  ------------------
+
+# resize window (you can also use the mouse for that)
+bindsym Mod1+$Mod+h resize shrink width 10 px
+bindsym Mod1+$Mod+j resize grow height 10 px
+bindsym Mod1+$Mod+k resize shrink height 10 px
+bindsym Mod1+$Mod+l resize grow width 10 px
+bindsym Mod1+$Mod+Left resize shrink width 10 px
+bindsym Mod1+$Mod+Down resize grow height 10 px
+bindsym Mod1+$Mod+Up resize shrink height 10 px
+bindsym Mod1+$Mod+Right resize grow width 10 px
+
+bindsym Shift+Mod1+Left  move left
+bindsym Shift+Mod1+Down  move down
+bindsym Shift+Mod1+Up    move up
+bindsym Shift+Mod1+Right move right
+
+# -------------------------------------------
+#              Workspaces
+# ------------------------------------------
+
+#navigate workspaces next / previous
+bindsym $mod+Ctrl+l workspace next
+bindsym $mod+Ctrl+h workspace prev
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# workspace back and forth (with/without active container)
+bindsym $mod+Ctrl+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+# icons: https://fontawesome.com/v5/cheatsheet
+#                          
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "0"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# assign apps to certain workspaces
+assign [title="w3m"] $ws3
+assign [class="firefox"] $ws4
+assign [class="qutebrowser"] $ws4
+assign [class="Surf"] $ws4
+assign [class="Mullvad VPN"] $ws5
+assign [title="Mullvad VPN"] $ws5
+assign [class="focuswriter"] $ws4
+assign [class="KeePassXC"] $ws5
+
+# focus
+bindsym $mod+t [title="rtorrent"] focus
+bindsym $mod+b [title="w3m"] focus; [class="qutebrowser"] focus; [class="firefox"] focus 
+bindsym $mod+Next [title="w3m"] focus; [class="qutebrowser"] focus; [class="firefox"] focus 
+bindsym $mod+Shift+m [title=".+ Musicpi Player"] focus; [title="mocp"] focus
+
+# focus active player
+bindsym $mod+m exec --no-startup-id i3ap
+# bindsym $mod+End [title="mainterm"] focus
+bindsym $mod+Control+End [title="mainterm"] focus
+bindsym $mod+End [title="vim"] focus
+bindsym $mod+Ctrl+Next [class="kitty"] focus
+
+# ----------------------------------------------
+#              program config
+# ----------------------------------------------
+for_window [class="mpv"] fullscreen enable 
+for_window [title="video0 - mpv"] floating enable
+for_window [class="cloud-drive-ui"] floating disable
+for_window [class="Mullvad VPN"] floating disable
+for_window [class="mullvad vpn"] floating disable
+for_window [title="Mullvad VPN"] floating disable
+for_window [title="VeraCrypt"] floating disable
+for_window [title="veracrypt"] floating disable
+for_window [class="kitty" title="terminal-floating"] floating enable
+for_window [class="Sxiv"] fullscreen enable
+for_window [class="feh"] fullscreen enable
+for_window [class="Zathura"] fullscreen enable
+for_window [title=".+ - Remote Desktop - RustDesk"] fullscreen enable
+
+# ----------------------------------------------
+#                   status bar
+# ----------------------------------------------
+
+bar {
+  # status_command i3status -c ~/.config/i3status/config 
+  status_command i3status -c ~/.config/i3status/config | ~/src/i3status-wrapper
+  mode hide
+  hidden_state hide
+  modifier $Mod
+  position bottom
+  font pango:Sans 9 
+  # font pango:Source Code Pro 10 
+  # font pango:monospace 10
+  tray_output none 
+
+  colors{
+    background #000000
+    statusline #FF9900
+    separator #FF9900
+    focused_workspace #000000 $000000 #000000
+    active_workspace #000000 #333333 #AA0000
+    inactive_workspace #000000 #000000 #FF9900
+    urgent_workspace #000000 F000000 #FF0000
+    binding_mode       #2f343a #900000 #ffffff
+  }
+}

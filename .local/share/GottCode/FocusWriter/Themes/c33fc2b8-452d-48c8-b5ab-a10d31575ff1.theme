@@ -1,0 +1,41 @@
+[General]
+LoadColor=#442e19
+Name=Fantasy Desert
+
+[Background]
+Color=#666666
+Image=/home/xaos/optisches/writing_background ¬fav ¬writing ¬painting ¬dark ¬light.jpg
+ImageFile=2-59fa106f2ed38287d0d2ab73001c678b2e63c118.jpg
+Type=5
+
+[Foreground]
+Color=#ffffff
+Margin=250
+Opacity=0
+Padding=10
+Position=1
+Rounding=0
+RoundingDisabled=10
+Width=800
+
+[ForegroundBlur]
+Enabled=false
+Radius=32
+
+[ForegroundShadow]
+Color=#000000
+Enabled=false
+Offset=2
+Radius=8
+
+[Spacings]
+IndentFirstLine=false
+LineSpacing=100
+ParagraphAbove=0
+ParagraphBelow=0
+TabWidth=48
+
+[Text]
+Color=#000000
+Font="Noto Sans Mono Medium,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+Misspelled=#ff0000

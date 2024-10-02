@@ -1,0 +1,39 @@
+# zathurarc
+# example file at https://github.com/majutsushi/etc/blob/master/zathurarc
+# and https://github.com/lervag/dotfiles/blob/master/zathura/.config/zathura/zathurarc
+
+# copy to clipboard instead of primary
+set selection-clipboard clipboard
+
+set guioptions none
+
+set recolor true
+# set recolor_darkcolor #BDE090
+# set recolor_lightcolor #000000
+
+set recolor-keephue
+
+#set default-fg #999999
+
+unmap s
+map s toggle_statusbar
+map p toggle_page_mode 
+map g goto
+map [normal] f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+map [normal]     <PageUp>   navigate previous
+map [fullscreen] <PageUp>   navigate previous
+map [normal]     <PageDown> navigate next
+map [fullscreen] <PageDown> navigate next
+
+map [fullscreen] ä adjust_window best-fit
+map [normal] ä adjust_window best-fit
+
+# toc
+# map [fullscreen] <i> toggle_index
+# map [normal] <i> toggle_index
+
+# rotate
+map [normal]     R rotate rotate-ccw
+map [fullscreen] R rotate rotate-ccw
