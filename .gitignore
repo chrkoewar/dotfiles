@@ -1,0 +1,12 @@
+.config/ranger/__pycache__
+.config/ranger/colorschemes/__pycache__
+.config/ranger/plugins/__pycache__
+.local/share/applications/synology-drive-open-file.desktop
+.config/newsboat/.vim-bookmarks
+.config/ranger/.vim-bookmarks
+.config/feh/current_wallpaper.jpg
+.config/feh/current_wallpaper
+.config/feh/current_wallpaper.jpg
+.config/newsboat/cache.db
+.fehbg
+.config/mpvc/curl-cache.txt
