@@ -1,8 +1,8 @@
 # vim: set syntax=conf: to ~/.rtorrent.rc
 # https://wiki.archlinux.org/title/RTorrent#Configuration
 
-directory.default.set = ~/tmp
-session.path.set = ~/.config/rtorrent/session
+directory.default.set = ~/tmp/torrent/downloads
+s/torrent/downloadsession.path.set = ~/.config/rtorrent/session
 
 throttle.min_peers.normal.set = 40
 throttle.max_peers.normal.set = 52

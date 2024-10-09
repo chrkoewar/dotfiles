@@ -1,29 +1,11 @@
-#https://nitter.net/rki_de/rss ! official
-#https://nitter.net/Polizei_DeRo/rss ! twitter
-#https://nitter.net/Polizei_HAL/rss ! twitter
-#"query:Offiziell:tags # \"official\""
+#
+# Deutsches RSS Verzeichnis
+# https://www.rss-verzeichnis.de/nachrichten/pressemitteilungen
+#
+# Tools:
+# youtube username to channel_id converter : https://www.streamweasels.com/tools/youtube-channel-id-and-user-id-convertor/
 
-#https://nitter.net/janboehm/rss ! socials
-#https://nitter.net/Der_Postillon/rss ! socials
-# https://www.reddit.com/r/kettlebell.rss ! socials
-# https://www.reddit.com/r/capoeira.rss ! socials
-# https://www.reddit.com/r/ChatGPT.rss ! socials
-# https://www.reddit.com/r/bjj.rss ! socials
-#https://www.reddit.com/r/LifeProTips.rss ! socials
-# "query:socials:tags # \"socials\""
-
-
-# Tagesschau
-# rss plaintext
-# https://www.tagesschau.de/xml/atom  ! news
-# alle meldungen
-# https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml ! news
-# Alle Meldungen 
-# https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml ! news
-# Meldungen Startseite
-# https://www.tagesschau.de/index~rss2.xml ! news
-
-# Tagesschau
+# News
 # Sachsen-Anhalt
 https://www.tagesschau.de/inland/regional/sachsenanhalt/index~rss2.xml ! news
 # alle Artikel aus dem Ressort Investigativ
@@ -32,15 +14,24 @@ https://www.tagesschau.de/investigativ/index~rss2.xml ! news
 https://www.tagesschau.de/ausland/index~rss2.xml ! news
 # nur Innenpolitik
 https://www.tagesschau.de/inland/innenpolitik/index~rss2.xml ! news
-
+# Jüdische Allgemeine
+https://www.juedische-allgemeine.de/rss ! news
 "query:news:tags # \"news\""
 
+# Infos
+# Statistisches Bundesamt
+https://www.destatis.de/SiteGlobals/Functions/RSSFeed/DE/RSSNewsfeed/Aktuell.xml?nn=241288 ! info
+# Verbandsbüro
+https://www.verbandsbuero.de/feed/ ! info
+
+# Geschichten aus der Geschichte
 https://geschichten-aus-der-geschichte.podigee.io/feed/mp3 ! hörspiel
+# BR Hörspielpool
 https://feeds.br.de/hoerspiel-pool/feed.xml ! hörspiel
+# Hörpielfeature
 https://www.hoerspielundfeature.de/das-feature-104.xml ! hörspiel
+# WDR Hörspielspeicher
 https://www1.wdr.de/mediathek/audio/hoerspiel-speicher/wdr_hoerspielspeicher150.podcast ! hörspiel
-    # Sadhguru
-# https://www.omnycontent.com/d/playlist/ff838d5b-d787-4f8b-9a75-af9500e3acd3/d60c2ada-2f3e-4359-b0af-af960079f937/e1036464-868b-4320-98af-af960079f958/podcast.rss ! hörspiel
 # Fest und Flauschig
 https://car-ma.org/rss/fuf.rss ! hörspiel
 # Jordan B. Peterson
@@ -52,10 +43,10 @@ https://www.hoerspielundfeature.de/hoerspiel-122.xml ! hörspiel
 # DLF Krimi Hörspiel
 https://www.hoerspielundfeature.de/krimi-hoerspiel-100.xml ! hörspiel
 # DLF Doku
-# https://www.deutschlandfunk.de/dlf-doku-100.xml ! hörspiel
+https://www.deutschlandfunk.de/dlf-doku-100.xml ! hörspiel
 # Was bisher geschah Geschichtspodcast
 https://rss.art19.com/was-bisher-geschah ! hörspiel
-# LAnz und Precht
+# Lanz und Precht
 https://lanz-precht.podigee.io/feed/mp3 ! hörspiel
 # SRF Sternstunde Philosophie
 https://www.srf.ch/feed/podcast/sd/28426f25-6beb-4264-8ca9-ddddf717d6ea.xml ! hörspiel
@@ -63,32 +54,38 @@ https://www.srf.ch/feed/podcast/sd/28426f25-6beb-4264-8ca9-ddddf717d6ea.xml ! h�
 https://www.srf.ch/feed/podcast/sd/553f3450-1697-4fc5-ad79-0dead1605c8f.xml ! hörspiel
 "query:hörspiel:tags # \"hörspiel\""
 
+# BBC World
 http://feeds.bbci.co.uk/news/world/rss.xml ! world
+# Japan Today
 https://japantoday.com/feed/atom ! world
+# Rio Times
 https://riotimesonline.com/feed ! world
+# Journal de Brasilia
 https://jornaldebrasilia.com.br/feed/ ! world
 "query:world:tags # \"world\""
 
-# https://nitter.net/DalaiLama/rss ! wissen
+# Heise Wissen
 https://www.heise.de/rss/heise-Rubrik-Wissen.rdf/ ! wissen
+# Netzpolitik
 https://www.heise.de/rss/heise-Rubrik-Netzpolitik.rdf ! wissen
-https://lukesmith.xyz/index.xml ! wissen
-# https://www.asahi.com/rss/asahi/newsheadlines.rdf ! wissen
-
+# Chaos Computer Club
+https://www.ccc.de/de/rss/updates.xml ! wissen
+# Archäologie Online
+https://www.archaeologie-online.de/magazin/nachrichten/rss.xml ! wissen
+# Welt der Physik
+https://www.weltderphysik.de/intern/index.php?PID=36 ! wissen
+# Informatik verstehen
+https://www.informatik-verstehen.de/blog/tipps-tricks/docker-container-einfuehrung-virtualisierung-docker/ ! wissen
+# Institut für Kommuikation und soziale Medien
+https://www.ikosom.de/?feed=rss ! wissen
 "query:wissen:tags # \"wissen\""
 
-# https://news.google.com/rss/search?q=Brazil ! brazil
-# https://riotimesonline.com/feed/ ! brazil
-# https://rioonwatch.org/?feed=rss2 ! brazil
-# "query:Brazil:tags # \"brazil\""
 # ct3003, heise
 https://www.youtube.com/feeds/videos.xml?UC1t9VFj-O6YUDPQxaVg-NkQ ! video
 # bosetti will reden
 https://www.youtube.com/feeds/videos.xml?UCx0ZfHVgupjADCt7BH3G4IA ! video
-
 # Lanz
 https://www.youtube.com/feeds/videos.xml?UCeqKIgPQfNInOswGRWt48kQ ! video
-
 https://www.youtube.com/feeds/videos.xml?UCx0ZfHVgupjADCt7BH3G4IA ! video
 # andre herrmann
 https://www.youtube.com/feeds/videos.xml?UC-p0sExAkpboQBJ-1d0s_Tw ! video
@@ -104,13 +101,13 @@ https://www.youtube.com/feeds/videos.xml?UC7x1zUUIrccDYILEpD-gbBA ! video
 https://www.youtube.com/feeds/videos.xml?UCHnmeuSOn1Hscizw6otqWrA ! video
 # ultralativ
 https://www.youtube.com/feeds/videos.xml?UCb-cM927p9tWkqmpOrBabOQ ! video
-
-https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg ! video
 # two minute papers
-https://www.youtube.com/feeds/videos.xml?channel_id=UCIvthGRDv___2gL2JGiDryQ ! video
+https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg ! video
 # kueppersbusch
-https://www.youtube.com/feeds/videos.xml?channel_id=UCFhXFikryT4aFcLkLw2LBLA ! video
+https://www.youtube.com/feeds/videos.xml?channel_id=UCIvthGRDv___2gL2JGiDryQ ! video
 # nile red
+https://www.youtube.com/feeds/videos.xml?channel_id=UCFhXFikryT4aFcLkLw2LBLA ! video
+# hard2hurt
 https://www.youtube.com/feeds/videos.xml?channel_id=UCNKtHIrVMaDE7hovBvodpDw ! video
 # neo magazin
 https://www.youtube.com/feeds/videos.xml?channel_id=UCNNEMxGKV1LsKZRt4vaIbvw ! video
@@ -134,15 +131,15 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UCh_GQqobenO55IJ9sYZWndA ! v
 https://www.youtube.com/feeds/videos.xml?channel_id=UC7vVhkEfw4nOGp8TyDk7RcQ ! video
 # hyperboleTV
 https://www.youtube.com/feeds/videos.xml?channel_id=UCdoZxLWeGjEySL_LY0O_0EA ! video
+# Tagesscahu in 100 Sekunden
+https://www.tagesschau.de/multimedia/sendung/tagesschau_in_100_sekunden/podcast-ts100-video-100~podcast.xml ! video
 "query:video:tags # \"video\""
+# Tagesschau 20 Uhr
+# https://www.tagesschau.de/multimedia/sendung/tagesschau_20_uhr/podcast-ts2000-video-100~podcast.xml ! video
+# Deep into Youtube, Reddit
+# https://www.reddit.com/r/DeepIntoYouTube.rss ! video
 
 "query:-------------------------------:flashs # \"z\""
 "query:starred (s):flags # \"s\""
-https://www.tagesschau.de/multimedia/sendung/tagesschau_in_100_sekunden/podcast-ts100-video-100~podcast.xml ! video
-# https://www.tagesschau.de/multimedia/sendung/tagesschau_vor_20_jahren/podcast-tsv20-video-100~podcast.xml ! video
-# https://www.tagesschau.de/multimedia/sendung/tagesschau_20_uhr/podcast-ts2000-video-100~podcast.xml ! video
-# deepintoyoutube reddit
-# https://www.reddit.com/r/DeepIntoYouTube.rss ! video
-# username to channel_id converter : https://www.streamweasels.com/tools/youtube-channel-id-and-user-id-convertor/
 
 

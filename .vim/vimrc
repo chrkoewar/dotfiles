@@ -12,29 +12,8 @@
 " List of autoevents https://vimdoc.sourceforge.net/htmldoc/autocmd.html#autocmd-events 
 " remap special keys    https://unix.stackexchange.com/questions/592769/how-to-remap-characters-like-in-vim-but-in-the-entire-os
 
-" noremap o :'<,'>!xargs -i xdg-open "{}"
-" noremap o "zy<cr>:execute '!lh ' . @z<cr>
-
-" choose file via lf
-function! LF()
-    let temp = tempname()
-    exec 'silent !lf -selection-path=' . shellescape(temp)
-    if !filereadable(temp)
-        redraw!
-        return
-    endif
-    let names = readfile(temp)
-    if empty(names)
-        redraw!
-        return
-    endif
-    exec 'edit ' . fnameescape(names[0])
-    for name in names[1:]
-        exec 'argadd ' . fnameescape(name)
-    endfor
-    redraw!
-endfunction
-command! -bar LF call LF()
+vnoremap o :'<,'>!xargs -i xdg-open "{}"
+noremap o "zy<cr>:execute '!lh ' . @z<cr>
 
 
 " jumps
@@ -286,7 +265,7 @@ call plug#begin('~/.vim/plugged')
 " todo.txt syntax and editing
 Plug 'freitass/todo.txt-vim'
 noremap # <Nop>
-let maplocalleader="#"
+" let maplocalleader="#"
 
 " help macros repeat via.
 " Plug 'tpope/vim-repeat'
@@ -379,7 +358,7 @@ nnoremap <silent> <F2> :BookmarkNext<cr>
 
 let g:bookmark_no_default_key_mappings = 1
 function! BookmarkMapKeys()
-    nmap mm :edit<cr>:BookmarkToggle<CR>
+    nmap mm :BookmarkToggle<CR>
     nmap mi :BookmarkAnnotate<CR>
     nmap mn :BookmarkNext<CR>
     nmap mp :BookmarkPrev<CR>
@@ -488,6 +467,7 @@ noremap X D
 
 " set go+=a   " Visual selection automatically copied to the clipboard
 
+
 " remap Yank to Copy
 inoremap <C-p> <C-r>"
 inoremap <C-x> <Esc>:call CopyToClipboard()<cr>i
@@ -575,13 +555,13 @@ nnoremap <C-R> <C-R>
 
 " keybindings for LaTeX
 nnoremap <leader><lt> <Home>i» <Esc>
-autocmd FileType tex inoremap ++ {}<ESC>hi
-autocmd FileType tex inoremap 8# ()<ESC>i
-autocmd FileType tex inoremap 88# []<ESC>i
-autocmd FileType tex inoremap 7# {}<ESC>i
-autocmd FileType tex inoremap (# ()<ESC>i
-autocmd FileType tex inoremap [# []<ESC>i
-autocmd FileType tex inoremap {# {}<ESC>i
+" autocmd FileType tex inoremap ++ {}<ESC>hi
+" autocmd FileType tex inoremap 8# ()<ESC>i
+" autocmd FileType tex inoremap 88# []<ESC>i
+" autocmd FileType tex inoremap 7# {}<ESC>i
+" autocmd FileType tex inoremap (# ()<ESC>i
+" autocmd FileType tex inoremap [# []<ESC>i
+" autocmd FileType tex inoremap {# {}<ESC>i
 
 " Display method for folded text ---------------------------------
 function! NeatFoldText()
@@ -692,7 +672,6 @@ noremap <leader><Down>  o<Esc>k
 noremap <leader><Up>  O<Esc>j
 
 " nnoremap <leader>f :Files<cr>
-nnoremap <leader>f :LF<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>r :History<cr>
 " Empty value to disable preview window altogether
@@ -779,6 +758,29 @@ nnoremap <leader>e :LF<cr>
 " au BufEnter *.md setlocal foldmethod=expr
 
 " comment
-nnoremap # :Commentary<cr>
-vnoremap # :Commentary<cr>
+nnoremap ' :Commentary<cr>
+vnoremap ' :Commentary<cr>
+
+" choose file via lf from directory of current buffer
+function! LF()
+    let temp = tempname()
+    exec 'silent !lf -selection-path=' . shellescape(temp) . " " . @%
+    if !filereadable(temp)
+        redraw!
+        return
+    endif
+    let names = readfile(temp)
+    if empty(names)
+        redraw!
+        return
+    endif
+    exec 'edit ' . fnameescape(names[0])
+    for name in names[1:]
+        exec 'argadd ' . fnameescape(name)
+    endfor
+    redraw!
+endfunction
+command! -bar LF call LF()
+
+nnoremap <leader>f :LF<cr>
 
